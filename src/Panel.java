@@ -1,17 +1,20 @@
 import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+
 
 public class Panel extends JPanel {
 
-    private TextArea textArea = null;
-    private MenuBar menuBar = null;
+    private TextArea textArea;
+    private MenuBar menuBar;
+    private JScrollPane scrollPane;
 
     public Panel() {
         setLayout(new BorderLayout());
         textArea = new TextArea();
         menuBar = new MenuBar();
+        scrollPane = new JScrollPane(textArea);
         add(menuBar, BorderLayout.NORTH);
-        add(textArea, BorderLayout.CENTER);
+        add(scrollPane,BorderLayout.CENTER);
     }
 
 }
