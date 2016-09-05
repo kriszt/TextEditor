@@ -1,3 +1,5 @@
+package TextEditor;
+
 import javax.swing.*;
 import java.awt.BorderLayout;
 
