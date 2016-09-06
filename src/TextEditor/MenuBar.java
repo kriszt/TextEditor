@@ -3,6 +3,7 @@ package TextEditor;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 
@@ -43,7 +44,7 @@ public class MenuBar extends JMenuBar {
             public void actionPerformed(ActionEvent e) {
                 StringSelection selection = new StringSelection(Main.frame.panel.textPane.getSelectedText());
                 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-                clipboard.setContents(selection,null);
+                clipboard.setContents(selection, null);
             }
         });
         cut = new JMenuItem(new AbstractAction("Cut") {
@@ -56,11 +57,14 @@ public class MenuBar extends JMenuBar {
         });
         paste = new JMenuItem(new AbstractAction("Paste") {
             public void actionPerformed(ActionEvent e) {
-                /*
                 String clipboardContent = null;
                 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-                clipboard.getContents(clipboardContent);
-                */
+                try {
+                    clipboardContent = (String) clipboard.getData(DataFlavor.stringFlavor);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+                Main.frame.panel.textPane.replaceSelection(clipboardContent);
             }
         });
         delete = new JMenuItem(new AbstractAction("Delete") {
