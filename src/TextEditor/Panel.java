@@ -6,15 +6,15 @@ import java.awt.BorderLayout;
 
 public class Panel extends JPanel {
 
-    private TextArea textArea;
-    private MenuBar menuBar;
-    private JScrollPane scrollPane;
+    TextPane textPane;
+    MenuBar menuBar;
+    JScrollPane scrollPane;
 
     public Panel() {
         setLayout(new BorderLayout());
-        textArea = new TextArea();
+        textPane = new TextPane();
         menuBar = new MenuBar();
-        scrollPane = new JScrollPane(textArea);
+        scrollPane = new JScrollPane(textPane);
         add(menuBar, BorderLayout.NORTH);
         add(scrollPane,BorderLayout.CENTER);
     }

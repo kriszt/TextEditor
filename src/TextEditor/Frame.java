@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Frame extends JFrame {
 
-    private Panel panel;
+    Panel panel;
 
     public Frame() {
         setTitle("Text Editor - Untitled");
