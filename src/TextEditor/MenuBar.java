@@ -51,6 +51,7 @@ public class MenuBar extends JMenuBar {
                 System.out.println("Save as");
             }
         });
+
         file.add(newFile);
         file.add(openFile);
         file.add(saveFile);
