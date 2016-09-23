@@ -6,29 +6,46 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
+import java.util.Scanner;
 
 public class MenuBar extends JMenuBar {
 
     JMenu file, edit;
     JMenuItem newFile, openFile, saveFile, saveFileAs, copy, cut, paste, delete;
+    JFileChooser browse;
 
     public MenuBar() {
+        browse = new JFileChooser();
         file = new JMenu("File");
+
         newFile = new JMenuItem(new AbstractAction("New") {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("new");
             }
         });
+
         openFile = new JMenuItem(new AbstractAction("Open") {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("open");
+                browse.showOpenDialog(Main.frame.panel);
+                try {
+                    Scanner scanner = new Scanner(browse.getSelectedFile());
+                    Main.frame.panel.textPane.setText("");
+                    while (scanner.hasNextLine()) {
+                        Main.frame.panel.textPane.setText(Main.frame.panel.textPane.getText() + scanner.nextLine() + "\n");
+                    }
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+                Main.frame.setTitle("Text Editor - " + browse.getSelectedFile());
             }
         });
+
         saveFile = new JMenuItem(new AbstractAction("Save") {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Save");
+            public void actionPerformed(ActionEvent e) { System.out.println("Save");
             }
         });
+
         saveFileAs = new JMenuItem(new AbstractAction("Save as") {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Save as");
